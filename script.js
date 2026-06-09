@@ -40,17 +40,41 @@ document.addEventListener("keydown", (event) => {
 });
 
 const showToast = (message) => {
+  if (!toast) return;
   toast.textContent = message;
   toast.classList.add("show");
   window.setTimeout(() => toast.classList.remove("show"), 4200);
 };
 
-bookingForm?.addEventListener("submit", (event) => {
+bookingForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
   const formData = new FormData(bookingForm);
   const name = formData.get("name");
   const option = formData.get("bookingOption");
+  const submitButton = bookingForm.querySelector('button[type="submit"]');
 
-  showToast(`Thanks ${name}! Your ${option} request is ready to send.`);
-  bookingForm.reset();
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending...";
+  }
+
+  try {
+    const response = await fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    });
+
+    if (!response.ok) throw new Error("Form submission failed");
+
+    showToast(`Thanks ${name}! Your ${option} request has been sent.`);
+    bookingForm.reset();
+  } catch (error) {
+    showToast("Sorry, the request could not be sent. Please try again.");
+  } finally {
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.textContent = "Request booking";
+    }
+  }
 });

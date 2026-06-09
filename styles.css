@@ -66,6 +66,7 @@ p { color: var(--muted); line-height: 1.7; }
 .nav-toggle { display: none; background: none; border: 0; padding: 8px; }
 .nav-toggle span:not(.sr-only) { display: block; width: 24px; height: 2px; margin: 5px 0; background: var(--text); }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
+.hidden-field { display: none; }
 
 .hero { padding-top: 112px; }
 .hero-grid, .proof-grid, .booking-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 54px; align-items: center; }
