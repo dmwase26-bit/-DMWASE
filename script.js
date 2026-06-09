@@ -3,8 +3,6 @@ const navLinks = document.querySelector("#nav-links");
 const modal = document.querySelector("#video-modal");
 const modalTitle = document.querySelector("#modal-title");
 const modalClose = document.querySelector(".modal-close");
-const bookingForm = document.querySelector("#booking-form");
-const toast = document.querySelector("#toast");
 
 navToggle?.addEventListener("click", () => {
   const isOpen = navLinks.classList.toggle("open");
@@ -37,20 +35,4 @@ modal?.addEventListener("click", (event) => {
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && !modal.hidden) closeModal();
-});
-
-const showToast = (message) => {
-  toast.textContent = message;
-  toast.classList.add("show");
-  window.setTimeout(() => toast.classList.remove("show"), 4200);
-};
-
-bookingForm?.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const formData = new FormData(bookingForm);
-  const name = formData.get("name");
-  const option = formData.get("bookingOption");
-
-  showToast(`Thanks ${name}! Your ${option} request is ready to send.`);
-  bookingForm.reset();
 });

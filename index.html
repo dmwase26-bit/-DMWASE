@@ -205,7 +205,16 @@
               <li>Monthly growth partner retainers</li>
             </ul>
           </div>
-          <form class="booking-form" id="booking-form">
+          <form
+            class="booking-form"
+            id="booking-form"
+            name="booking"
+            method="POST"
+            action="https://formsubmit.co/soumyadipsarkar794@gmail.com"
+          >
+            <input type="hidden" name="_subject" value="New growth call booking request" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
             <h3>Book your growth call</h3>
             <label>
               Name
@@ -262,7 +271,6 @@
       </div>
     </footer>
 
-    <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <script src="script.js"></script>
   </body>
 </html>
